@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import Modal from './components/common/Modal';
+
 import WindowsIcon from './components/Icons/WindowsIcon';
 import LinuxIcon from './components/Icons/LinuxIcon';
 import MacIcon from './components/Icons/MacIcon';
+import AddIcon from './components/Icons/AddIcon';
+import MagnifierIcon from './components/Icons/MagnifierIcon';
+import RefreshIcon from './components/Icons/RefreshIcon';
+
 import './App.css';
 
 function App() {
@@ -18,6 +23,9 @@ function App() {
       <WindowsIcon />
       <LinuxIcon />
       <MacIcon />
+      <AddIcon fill="#000" />
+      <MagnifierIcon />
+      <RefreshIcon />
 
       <div>should be above this</div>
     </div>

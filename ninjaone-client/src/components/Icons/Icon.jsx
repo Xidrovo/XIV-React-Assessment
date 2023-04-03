@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Icon = ({ path, viewBox, width, height, ...props }) => {
   return (
     <svg
