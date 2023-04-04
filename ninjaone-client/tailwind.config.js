@@ -1,11 +1,45 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        primary: 'var(--primary-color)',
+        'primary-light': 'var(--primary-color-light)',
+        'primary-dark': 'var(--primary-color-dark)',
+        secondary: 'var(--secondary-color)',
+        'secondary-light': 'var(--secondary-color-light)',
+        'secondary-dark': 'var(--secondary-color-dark)',
+        banner: 'var(--banner-color)',
+        third: 'var(--third-color)',
+        'third-light': 'var(--third-color-light)',
+        'third-dark': 'var(--third-color-dark)',
+        'icon-fill': 'var(--icon-fill-color)',
+        'icon-fill-light': 'var(--icon-fill-color-light)',
+        'icon-fill-dark': 'var(--icon-fill-color-dark)',
+        warning: 'var(--warning-color)',
+        'warning-light': 'var(--warning-color-light)',
+        'warning-dark': 'var(--warning-color-dark)',
+      },
+      textColor: {
+        primary: 'var(--primary-color)',
+        'primary-light': 'var(--primary-color-light)',
+        'primary-dark': 'var(--primary-color-dark)',
+        secondary: 'var(--secondary-color)',
+        'secondary-light': 'var(--secondary-color-light)',
+        'secondary-dark': 'var(--secondary-color-dark)',
+        banner: 'var(--banner-color)',
+        third: 'var(--third-color)',
+        'third-light': 'var(--third-color-light)',
+        'third-dark': 'var(--third-color-dark)',
+        'icon-fill': 'var(--icon-fill-color)',
+        'icon-fill-light': 'var(--icon-fill-color-light)',
+        'icon-fill-dark': 'var(--icon-fill-color-dark)',
+        warning: 'var(--warning-color)',
+        'warning-light': 'var(--warning-color-light)',
+        'warning-dark': 'var(--warning-color-dark)',
+      },
+    },
   },
   plugins: [],
-}
+};

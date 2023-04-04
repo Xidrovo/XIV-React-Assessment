@@ -1,13 +1,13 @@
 import React from 'react';
-import Modal from './components/common/Modal';
+import Modal from '@molecule/Modal';
 import useApi from './hooks/useAPI';
-
-import WindowsIcon from './components/Icons/WindowsIcon';
-import LinuxIcon from './components/Icons/LinuxIcon';
-import MacIcon from './components/Icons/MacIcon';
-import AddIcon from './components/Icons/AddIcon';
-import MagnifierIcon from './components/Icons/MagnifierIcon';
-import RefreshIcon from './components/Icons/RefreshIcon';
+import Header from './components/organism/Header';
+import WindowsIcon from '@icons/WindowsIcon';
+import LinuxIcon from '@icons/LinuxIcon';
+import MacIcon from '@icons/MacIcon';
+import AddIcon from '@icons/AddIcon';
+import MagnifierIcon from '@icons/MagnifierIcon';
+import RefreshIcon from '@icons/RefreshIcon';
 
 import './App.css';
 
@@ -16,9 +16,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline text-red-700 bg-slate-800">
-        Hello world!
-      </h1>
+      <Header />
       <Modal></Modal>
       <WindowsIcon />
       <LinuxIcon />
