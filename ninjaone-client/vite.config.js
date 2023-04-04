@@ -8,9 +8,9 @@ export default defineConfig({
     alias: {
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@icons': path.resolve(__dirname, 'src/components/atoms/icons'),
-      '@atom': path.resolve(__dirname, 'src/components/atoms'),
-      '@molecule': path.resolve(__dirname, 'src/components/molecules'),
-      '@organism': path.resolve(__dirname, 'src/components/organism'),
+      '@atoms': path.resolve(__dirname, 'src/components/atoms'),
+      '@molecules': path.resolve(__dirname, 'src/components/molecules'),
+      '@organisms': path.resolve(__dirname, 'src/components/organism'),
     },
   },
   server: {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Icon = ({ path, viewBox, width, height, ...props }) => {
+const Icon = ({ path, viewBox, width, height, className, ...props }) => {
   return (
     <svg
       width={width}
@@ -8,6 +8,7 @@ const Icon = ({ path, viewBox, width, height, ...props }) => {
       viewBox={viewBox}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
       {...props}
     >
       <path d={path} />
