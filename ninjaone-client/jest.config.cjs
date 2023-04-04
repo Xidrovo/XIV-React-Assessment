@@ -9,4 +9,7 @@ module.exports = {
   },
   setupFilesAfterEnv: ['./jest.setup.cjs'],
   testEnvironment: 'jest-environment-jsdom',
+  transform: {
+    '^.+\\.(js|jsx)$': 'babel-jest',
+  },
 };

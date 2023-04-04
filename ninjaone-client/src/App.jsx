@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React from 'react';
 import Modal from './components/common/Modal';
+import useApi from './hooks/useAPI';
 
 import WindowsIcon from './components/Icons/WindowsIcon';
 import LinuxIcon from './components/Icons/LinuxIcon';
@@ -10,8 +11,8 @@ import RefreshIcon from './components/Icons/RefreshIcon';
 
 import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
+  const { get } = useApi('/api');
 
   return (
     <div className="App">
@@ -19,17 +20,24 @@ function App() {
         Hello world!
       </h1>
       <Modal></Modal>
-
       <WindowsIcon />
       <LinuxIcon />
       <MacIcon />
       <AddIcon fill="#000" />
       <MagnifierIcon />
       <RefreshIcon />
-
+      <button
+        className="p-3 bg-blue-800 text-white cursor-pointer"
+        onClick={async () => {
+          const data = await get('/devices');
+          console.log(data);
+        }}
+      >
+        click me!
+      </button>
       <div>should be above this</div>
     </div>
   );
-}
+};
 
 export default App;
