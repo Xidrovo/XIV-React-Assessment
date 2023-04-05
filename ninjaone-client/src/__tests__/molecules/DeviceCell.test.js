@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, getByText } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import DeviceCell from '../../components/molecules/DeviceCell';
 
 describe('DeviceCell molecule', () => {

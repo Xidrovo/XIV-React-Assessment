@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import SearchInput from '../../components/molecules/SearchInput';
+import SearchInput from '@molecules/SearchInput';
 
 describe('SearchInput molecule', () => {
   test('renders without crashing', () => {

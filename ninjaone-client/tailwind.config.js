@@ -1,8 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  mode: 'jit',
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      minWidth: {
+        md: '33rem',
+      },
       backgroundColor: {
         primary: 'var(--primary-color)',
         'primary-light': 'var(--primary-color-light)',

@@ -17,4 +17,9 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx}', // Collect coverage from all .js and .jsx files in the src folder
+    '!src/components/atoms/icons/**/*', // Exclude the Icon folder from coverage collection
+    // You can add more exclusions if needed
+  ],
 };
