@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import DotsIcon from '@icons/DotsIcon';
 import WindowsIcon from '@icons/WindowsIcon';
 import MacIcon from '@icons/MacIcon';
 import LinuxIcon from '@icons/LinuxIcon';
 
+import useOnClickOutside from '@hooks/useOnClickOutside';
+
 const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0 }) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const menuRef = useRef();
 
   const getIconByType = deviceType => {
     switch (deviceType.toUpperCase()) {
@@ -21,12 +24,20 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0 }) => {
     }
   };
 
+  useOnClickOutside(menuRef, () => {
+    if (openMenu) {
+      toggleMenu();
+    }
+  });
+
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
   };
 
   const handleMouseLeave = () => {
-    setOpenMenu(false);
+    if (openMenu) {
+      toggleMenu();
+    }
   };
   return (
     <tr className="hover:bg-table-hover group " onMouseLeave={handleMouseLeave}>
@@ -48,7 +59,7 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0 }) => {
             <DotsIcon />
           </div>
           {openMenu && (
-            <div className="absolute bg-red-500 z-10 rounded top-8 right-2 border">
+            <div className="absolute bg-red-500 z-10 rounded top-8 right-2 border" ref={menuRef}>
               <ul className=" bg-white w-32">
                 <li className="text-third py-2 pl-3 hover:bg-table-hover cursor-pointer">Edit</li>
                 <li className="text-warning py-2 pl-3 hover:bg-table-hover cursor-pointer">

@@ -14,7 +14,6 @@ const DeviceTables = () => {
         <DeviceCell systemName="LINUX-SMITH-J" deviceType="Linux" capacity={64} />
         <DeviceCell systemName="WINXP-125498HQ" deviceType="Windows" capacity={64} />
         <DeviceCell systemName="MAC-SMITH-JOHN" deviceType="Mac" capacity={64} />
-        {/* Add more table rows as needed */}
       </tbody>
     </table>
   );

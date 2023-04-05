@@ -10,6 +10,7 @@ const DotsIcon = ({ width = '13', height = '4', fill = '#211F33', className }) =
       width={width}
       height={height}
       className={className}
+      data-testid="dots-icon-id"
     />
   );
 };

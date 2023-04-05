@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, getByText } from '@testing-library/react';
 import DeviceCell from '../../components/molecules/DeviceCell';
 
 describe('DeviceCell molecule', () => {
@@ -44,5 +44,43 @@ describe('DeviceCell molecule', () => {
 
     expect(workstationText).toBeInTheDocument();
     expect(getByTestId('linux-icon-id')).toBeInTheDocument();
+  });
+
+  test('should open dropdown Menu with Edit and Delete options ', () => {
+    const { getByTestId, getByText } = render(<DeviceCell />);
+
+    fireEvent.mouseEnter(getByText(/workstation/i));
+    fireEvent.click(getByTestId('dots-icon-id'));
+
+    const editText = screen.getByText('Edit');
+    const deleteText = screen.getByText('Delete');
+    expect(editText).toBeInTheDocument();
+    expect(deleteText).toBeInTheDocument();
+  });
+
+  test('should open dropdown Menu button clicks and should hide it onMouseLeave ', () => {
+    const { getByTestId, getByText } = render(<DeviceCell />);
+
+    fireEvent.mouseEnter(getByText(/workstation/i));
+    fireEvent.click(getByTestId('dots-icon-id'));
+
+    const editText = screen.getByText('Edit');
+    expect(editText).toBeInTheDocument();
+
+    fireEvent.mouseLeave(getByText(/workstation/i));
+    expect(editText).not.toBeInTheDocument();
+  });
+
+  test('should open dropdown Menu button clicks and should hide it if click outside menu ', () => {
+    const { getByTestId, getByText } = render(<DeviceCell />);
+
+    fireEvent.mouseEnter(getByText(/workstation/i));
+    fireEvent.click(getByTestId('dots-icon-id'));
+
+    const editText = screen.getByText('Edit');
+    expect(editText).toBeInTheDocument();
+
+    fireEvent.mouseDown(document.body);
+    expect(editText).not.toBeInTheDocument();
   });
 });

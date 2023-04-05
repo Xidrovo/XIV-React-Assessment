@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
+
 import ArrowIcon from '@icons/ArrowIcon';
+
 import useOnClickOutside from '@hooks/useOnClickOutside';
 
 const Select = ({
