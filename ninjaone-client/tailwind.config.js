@@ -20,6 +20,9 @@ export default {
         warning: 'var(--warning-color)',
         'warning-light': 'var(--warning-color-light)',
         'warning-dark': 'var(--warning-color-dark)',
+
+        'table-hover': 'var(--table-hover)',
+        'hover-button': 'var(--hover-button)',
       },
       textColor: {
         primary: 'var(--primary-color)',

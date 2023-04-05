@@ -9,6 +9,7 @@ const WindowsIcon = ({ width = '14', height = '15' }) => {
       width={width}
       height={height}
       fill="#595766"
+      data-testid="windows-icon-id"
     />
   );
 };

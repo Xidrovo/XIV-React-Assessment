@@ -9,6 +9,7 @@ const MacIcon = ({ width = '11', height = '13' }) => {
       viewBox="0 0 11 13"
       width={width}
       height={height}
+      data-testid="mac-icon-id"
     />
   );
 };
