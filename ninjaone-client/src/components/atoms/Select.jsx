@@ -7,10 +7,14 @@ import useOnClickOutside from '@hooks/useOnClickOutside';
 const Select = ({
   prefixText = '',
   options = [{ value: 'default', label: 'default value' }],
+  placeholder = '',
   onChange = () => {},
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(
+    placeholder ? { label: placeholder, value: placeholder } : options[0]
+  );
+  const [hadSelected, setHadSelected] = useState(!placeholder);
   const selectRef = useRef();
 
   const toggleDropdown = () => {
@@ -24,6 +28,9 @@ const Select = ({
   });
 
   const handleOptionClick = option => {
+    if (!hadSelected) {
+      setHadSelected(true);
+    }
     setSelectedOption(option);
     setIsOpen(false);
     onChange(option);
@@ -36,8 +43,8 @@ const Select = ({
       ref={selectRef}
     >
       <div className="px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center">
-        <p>
-          {prefixText} {selectedOption.label}
+        <p className={`${hadSelected ? ' ' : 'text-gray-500'}`}>
+          {!placeholder && prefixText} {selectedOption.label}
         </p>
         <ArrowIcon
           className={` ml-4 transition-transform duration-300 ${isOpen && 'rotate-180'}`}

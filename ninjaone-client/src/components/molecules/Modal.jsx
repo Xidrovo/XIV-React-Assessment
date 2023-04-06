@@ -20,7 +20,7 @@ const Modal = ({ children, isOpen, closeModal, title = 'title modal' }) => {
         data-testid="modal-test-id"
       >
         <div ref={modalRef} className="p-6 bg-white rounded shadow-md min-w-md">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center pb-5">
             <h1 className=" font-medium text-2xl text-gray-800">{title}</h1>
             <div
               className="p-3 rounded cursor-pointer hover:bg-hover-button"

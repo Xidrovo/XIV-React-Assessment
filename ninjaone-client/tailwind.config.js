@@ -6,7 +6,8 @@ export default {
   theme: {
     extend: {
       minWidth: {
-        md: '33rem',
+        xs: '4.5rem',
+        md: '30rem',
       },
       backgroundColor: {
         primary: 'var(--primary-color)',

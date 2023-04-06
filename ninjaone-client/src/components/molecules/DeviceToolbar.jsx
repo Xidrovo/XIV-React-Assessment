@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Button from '@atoms/Button';
 
+import LabeledInput from '@molecules/LabeledInput';
+import LabeledSelect from '@molecules/LabeledSelect';
 import PlusIcon from '@icons/PlusIcon';
 
 import Modal from './Modal';
@@ -22,7 +24,24 @@ const DeviceToolbar = () => {
         <PlusIcon className="font-normal" />
         <p className=" pl-2">Add devices</p>
       </Button>
-      <Modal isOpen={openModal} closeModal={closeModal} />
+      <Modal isOpen={openModal} closeModal={closeModal} title="Add device">
+        <div className="flex flex-col space-y-4">
+          <LabeledInput labelText="System name *" />
+          <LabeledSelect placeholder="Select type" labelText="Device type *" />
+          <LabeledInput labelText="HDD capacity (GB) *" />
+        </div>
+        <div className="w-full flex justify-end mt-8 space-x-4">
+          <Button
+            buttonKind="secondary"
+            onClick={() => {
+              closeModal();
+            }}
+          >
+            Cancel
+          </Button>
+          <Button buttonKind="primary">Submit</Button>
+        </div>
+      </Modal>
     </article>
   );
 };

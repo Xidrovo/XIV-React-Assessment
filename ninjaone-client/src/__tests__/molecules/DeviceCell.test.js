@@ -4,8 +4,14 @@ import DeviceCell from '../../components/molecules/DeviceCell';
 
 describe('DeviceCell molecule', () => {
   test('renders without crashing with the defaults values', () => {
-    const { getByTestId } = render(<DeviceCell />);
-    const workstationText = screen.getByText(/workstation/i);
+    const { getByTestId, getByText } = render(
+      <table className="w-full text-left">
+        <tbody>
+          <DeviceCell />
+        </tbody>
+      </table>
+    );
+    const workstationText = getByText(/workstation/i);
 
     expect(workstationText).toBeInTheDocument();
     expect(getByTestId('windows-icon-id')).toBeInTheDocument();
@@ -15,7 +21,11 @@ describe('DeviceCell molecule', () => {
     const systemName = 'DESKTOP-0VCBIFF';
     const deviceType = 'Windows';
     const { getByTestId } = render(
-      <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
+      <table className="w-full text-left">
+        <tbody>
+          <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
+        </tbody>
+      </table>
     );
     const workstationText = screen.getByText('Windows workstation - 128 GB');
 
@@ -27,7 +37,11 @@ describe('DeviceCell molecule', () => {
     const systemName = 'DESKTOP-0VCBIFF';
     const deviceType = 'Mac';
     const { getByTestId } = render(
-      <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
+      <table className="w-full text-left">
+        <tbody>
+          <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
+        </tbody>
+      </table>
     );
     const workstationText = screen.getByText('Mac workstation - 128 GB');
 
@@ -38,7 +52,11 @@ describe('DeviceCell molecule', () => {
     const systemName = 'DESKTOP-0VCBIFF';
     const deviceType = 'Linux';
     const { getByTestId } = render(
-      <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
+      <table className="w-full text-left">
+        <tbody>
+          <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
+        </tbody>
+      </table>
     );
     const workstationText = screen.getByText('Linux workstation - 128 GB');
 
@@ -47,7 +65,13 @@ describe('DeviceCell molecule', () => {
   });
 
   test('should open dropdown Menu with Edit and Delete options ', () => {
-    const { getByTestId, getByText } = render(<DeviceCell />);
+    const { getByTestId, getByText } = render(
+      <table className="w-full text-left">
+        <tbody>
+          <DeviceCell />
+        </tbody>
+      </table>
+    );
 
     fireEvent.mouseEnter(getByText(/workstation/i));
     fireEvent.click(getByTestId('dots-icon-id'));
@@ -59,7 +83,13 @@ describe('DeviceCell molecule', () => {
   });
 
   test('should open dropdown Menu button clicks and should hide it onMouseLeave ', () => {
-    const { getByTestId, getByText } = render(<DeviceCell />);
+    const { getByTestId, getByText } = render(
+      <table className="w-full text-left">
+        <tbody>
+          <DeviceCell />
+        </tbody>
+      </table>
+    );
 
     fireEvent.mouseEnter(getByText(/workstation/i));
     fireEvent.click(getByTestId('dots-icon-id'));
@@ -72,7 +102,13 @@ describe('DeviceCell molecule', () => {
   });
 
   test('should open dropdown Menu button clicks and should hide it if click outside menu ', () => {
-    const { getByTestId, getByText } = render(<DeviceCell />);
+    const { getByTestId, getByText } = render(
+      <table className="w-full text-left">
+        <tbody>
+          <DeviceCell />
+        </tbody>
+      </table>
+    );
 
     fireEvent.mouseEnter(getByText(/workstation/i));
     fireEvent.click(getByTestId('dots-icon-id'));
