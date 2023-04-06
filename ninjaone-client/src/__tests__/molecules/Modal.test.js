@@ -10,7 +10,7 @@ const RenderTestModal = () => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={closeModal}>
+    <Modal isOpen={isOpen} closeModal={() => closeModal()}>
       Modal content
     </Modal>
   );
@@ -28,19 +28,19 @@ describe('Modal Molecule', () => {
     document.body.removeChild(appRoot);
   });
 
-  it('does not render the modal when is not open as true', () => {
+  test('does not render the modal when is not open as true', () => {
     render(<Modal isOpen={false} />);
     const modalElement = screen.queryByTestId('modal-test-id');
     expect(modalElement).not.toBeInTheDocument();
   });
 
-  it('does render the modal when isOpen as true', () => {
+  test('does render the modal when isOpen as true', () => {
     render(<Modal isOpen={true} onClose={() => {}} />);
     const modalElement = screen.getByTestId('modal-test-id');
     expect(modalElement).toBeInTheDocument();
   });
 
-  it('renders the modal content', () => {
+  test('renders the modal content', () => {
     render(
       <Modal isOpen={true} onClose={() => {}}>
         <p>Modal content</p>
@@ -50,13 +50,24 @@ describe('Modal Molecule', () => {
     expect(contentElement).toBeInTheDocument();
   });
 
-  xit('should close the modal if is clicked outside', () => {
+  test('should close the modal if is clicked outside', () => {
     const { getByText } = render(<RenderTestModal />);
 
     const contentElement = getByText('Modal content');
     expect(contentElement).toBeInTheDocument();
 
-    fireEvent.click(appRoot);
+    fireEvent.mouseDown(document.body);
+    expect(contentElement).not.toBeInTheDocument();
+  });
+  test('should close the modal if is clicked outside', () => {
+    const { getByText, getByTestId } = render(<RenderTestModal />);
+
+    const contentElement = getByText('Modal content');
+    const closeIcon = getByTestId('close-icon-id');
+
+    expect(contentElement).toBeInTheDocument();
+
+    fireEvent.click(closeIcon);
     expect(contentElement).not.toBeInTheDocument();
   });
 });
