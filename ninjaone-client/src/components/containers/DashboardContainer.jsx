@@ -16,7 +16,7 @@ const reducer = (state, action) => {
     case 'ADD_DEVICE':
       return [...state, action.payload];
     case 'DEL_DEVICE':
-      return [...state]; //TODO
+      return state.filter(item => item.id !== action.payload);
     case 'EDIT_DEVICE':
       return [...state];
     default:

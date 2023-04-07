@@ -1,4 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
+import SharedDashboardContext from '@context/SharedDashboardContext';
+
+import useOnClickOutside from '@hooks/useOnClickOutside';
+import useApi from '@hooks/useAPI';
 
 import DotsIcon from '@icons/DotsIcon';
 import WindowsIcon from '@icons/WindowsIcon';
@@ -7,16 +11,19 @@ import LinuxIcon from '@icons/LinuxIcon';
 
 import Button from '@atoms/Button';
 
+import DeleteModal from './DeleteModal';
 import LabeledInput from './LabeledInput';
 import LabeledSelect from './LabeledSelect';
 import Modal from './Modal';
 
-import useOnClickOutside from '@hooks/useOnClickOutside';
+const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0, id }) => {
+  const { dispatch } = useContext(SharedDashboardContext);
 
-const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0 }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openDelModal, setOpenDelModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
+
+  const { delApi } = useApi('/api');
 
   const menuRef = useRef();
 
@@ -56,6 +63,15 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0 }) => {
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const deleteCell = async () => {
+    await delApi(`/devices/${id}`);
+    dispatch({
+      type: 'DEL_DEVICE',
+      payload: id,
+    });
+    setOpenDelModal(false);
   };
 
   const handleMouseLeave = () => {
@@ -104,17 +120,13 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0 }) => {
           </div>
         </td>
       </tr>
-      <Modal isOpen={openDelModal} closeModal={closeModal} title="Delete Device?">
-        <p className=" text-gray-800 font-normal text-sm">
-          You are about to delete the device {systemName}. This action cannot be undone.
-        </p>
-        <div className="w-full flex justify-end mt-8 space-x-4">
-          <Button buttonKind="secondary" onClick={closeModal}>
-            Cancel
-          </Button>
-          <Button buttonKind="warning">Delete</Button>
-        </div>
-      </Modal>
+      <DeleteModal
+        isOpen={openDelModal}
+        closeModal={closeModal}
+        title="Delete Device?"
+        onDelete={deleteCell}
+        systemName={systemName}
+      />
       <Modal isOpen={openEditModal} closeModal={closeModal} title="Edit device">
         <div className="flex flex-col space-y-4">
           <LabeledInput labelText="System name *" />

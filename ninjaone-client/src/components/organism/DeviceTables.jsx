@@ -28,7 +28,6 @@ const DeviceTables = ({ devices = [] }) => {
   }, [sharedFilters.searchQuery, sharedFilters.filterType, sharedFilters.sortingBy, devices]);
 
   const filterByType = type => {
-    console.log(type, '???', devices);
     const upperType = type.toUpperCase();
 
     switch (type.toUpperCase()) {
@@ -90,6 +89,7 @@ const DeviceTables = ({ devices = [] }) => {
               deviceType={device.type}
               capacity={device.hdd_capacity}
               key={device.id}
+              id={device.id}
             />
           );
         })}
