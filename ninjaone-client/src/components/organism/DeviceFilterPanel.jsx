@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import SharedDashboardContext from '@context/SharedDashboardContext';
 
@@ -8,7 +8,16 @@ import SearchInput from '@molecules/SearchInput';
 import RefreshIcon from '@icons/RefreshIcon';
 
 const DeviceFilterPanel = () => {
-  const { sharedFilters, setSharedFilters } = useContext(SharedDashboardContext);
+  const { setSharedFilters } = useContext(SharedDashboardContext);
+  const [timerId, setTimerId] = useState(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+    };
+  }, [timerId]);
 
   const options = [
     { value: 'HDD-D', label: 'HDD Capacity (Descending)' },
@@ -24,16 +33,34 @@ const DeviceFilterPanel = () => {
     { value: 'linux', label: 'Linux' },
   ];
 
-  const handleSelect = val => {
+  const handleSelect = selectedOption => {
     setSharedFilters(prevData => ({
       ...prevData,
-      [val.name]: val.value,
+      [selectedOption.name]: selectedOption.value,
     }));
   };
+
+  const handleInput = ({ target }) => {
+    const { value } = target;
+
+    // Cancel the previous timer if it exists
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+
+    const newTimerId = setTimeout(() => {
+      setSharedFilters(prevData => ({
+        ...prevData,
+        searchQuery: value,
+      }));
+    }, 500);
+    setTimerId(newTimerId);
+  };
+
   return (
     <article className="flex justify-between items-center">
       <article className="flex justify-start space-x-2">
-        <SearchInput placeholder="search" />
+        <SearchInput placeholder="search" onChange={handleInput} />
         <Select
           prefixText="Device Type: "
           options={deviceType}

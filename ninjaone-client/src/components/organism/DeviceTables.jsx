@@ -10,9 +10,9 @@ const DeviceTables = ({ devices = [] }) => {
   useEffect(() => {
     let filteredDevice = [...filterByType(sharedFilters.filterType)];
     let sortedFilteredDevice = [...sortBy(sharedFilters.sortingBy, filteredDevice)];
-
+    console.log(sharedFilters);
     setTempDevice(sortedFilteredDevice);
-  }, [sharedFilters.filterType, sharedFilters.sortingBy, devices]);
+  }, [sharedFilters.searchQuery, sharedFilters.filterType, sharedFilters.sortingBy, devices]);
 
   const filterByType = type => {
     const upperType = type.toUpperCase();

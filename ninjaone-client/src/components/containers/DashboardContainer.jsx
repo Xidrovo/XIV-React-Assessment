@@ -32,8 +32,9 @@ const DashboardContainer = () => {
   const { get } = useApi('/api');
 
   const [sharedFilters, setSharedFilters] = useState({
+    searchQuery: '',
     filterType: 'All',
-    sortingBy: 'None',
+    sortingBy: 'HDD-D',
   });
 
   const populateDevice = async () => {
