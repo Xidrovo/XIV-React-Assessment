@@ -11,14 +11,14 @@ import Modal from './Modal';
 
 const DeviceToolbar = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { sharedData, setSharedData } = useContext(SharedDashboardContext);
+  const { sharedFilters, setSharedFilters } = useContext(SharedDashboardContext);
 
   const toggleModal = () => {
     setOpenModal(!openModal);
   };
 
   const closeModal = () => {
-    console.log(sharedData);
+    console.log(sharedFilters);
     setOpenModal(false);
   };
 

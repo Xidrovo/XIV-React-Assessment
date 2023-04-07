@@ -4,7 +4,7 @@ import DeviceCell from '@molecules/DeviceCell';
 import SharedDashboardContext from '@context/SharedDashboardContext';
 
 const DeviceTables = ({ devices = [] }) => {
-  const { sharedData } = useContext(SharedDashboardContext);
+  const { sharedFilters } = useContext(SharedDashboardContext);
   const [tempDevice, setTempDevice] = useState(devices);
 
   useEffect(() => {
@@ -12,26 +12,61 @@ const DeviceTables = ({ devices = [] }) => {
   }, [devices]);
 
   useEffect(() => {
-    console.log('I should filter device by ' + sharedData.filterType);
-    setTempDevice(filterByType(sharedData.filterType));
-  }, [sharedData.filterType]);
+    let filteredDevice = filterByType(sharedFilters.filterType);
+    let sortedFilteredDevice = sortBy(sharedFilters.sortingBy, filteredDevice);
+    setTempDevice(sortedFilteredDevice);
+  }, [sharedFilters.filterType, sharedFilters.sortingBy]);
 
   const filterByType = type => {
+    const upperType = type.toUpperCase();
+
     switch (type.toUpperCase()) {
       case 'WINDOWS':
         return devices.filter(device => {
-          return device.type.toUpperCase() === type.toUpperCase();
+          return device.type.toUpperCase() === upperType;
         });
       case 'MAC':
         return devices.filter(device => {
-          return device.type.toUpperCase() === type.toUpperCase();
+          return device.type.toUpperCase() === upperType;
         });
       case 'LINUX':
         return devices.filter(device => {
-          return device.type.toUpperCase() === type.toUpperCase();
+          return device.type.toUpperCase() === upperType;
         });
       default:
         return devices;
+    }
+  };
+
+  const sortBy = (sortingBy, filteredDevice) => {
+    switch (sortingBy.toUpperCase()) {
+      case 'HDD-D':
+        return filteredDevice.sort((a, b) => {
+          if (parseInt(a.hdd_capacity, 10) > parseInt(b.hdd_capacity, 10)) {
+            return 1;
+          }
+          if (parseInt(a.hdd_capacity, 10) < parseInt(b.hdd_capacity, 10)) {
+            return -1;
+          }
+          return 0;
+        });
+      case 'HDD-A':
+        return filteredDevice.sort((a, b) => {
+          if (parseInt(a.hdd_capacity, 10) > parseInt(b.hdd_capacity, 10)) {
+            return -1;
+          }
+          if (parseInt(a.hdd_capacity, 10) < parseInt(b.hdd_capacity, 10)) {
+            return 1;
+          }
+          return 0;
+        });
+      case 'NAME-AZ':
+        return [];
+      case 'NAME-ZA':
+        return [];
+
+      default:
+        return filteredDevice;
     }
   };
   return (

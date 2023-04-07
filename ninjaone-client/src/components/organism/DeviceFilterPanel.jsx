@@ -8,12 +8,13 @@ import SearchInput from '@molecules/SearchInput';
 import RefreshIcon from '@icons/RefreshIcon';
 
 const DeviceFilterPanel = () => {
-  const { sharedData, setSharedData } = useContext(SharedDashboardContext);
+  const { sharedFilters, setSharedFilters } = useContext(SharedDashboardContext);
 
   const options = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
+    { value: 'HDD-D', label: 'HDD Capacity (Descending)' },
+    { value: 'HDD-A', label: 'HDD Capacity (Ascending)' },
+    { value: 'Name-AZ', label: 'Name (A-Z)' },
+    { value: 'Name-ZA', label: 'Name (Z-A)' },
   ];
 
   const deviceType = [
@@ -24,7 +25,7 @@ const DeviceFilterPanel = () => {
   ];
 
   const handleSelect = val => {
-    setSharedData(prevData => ({
+    setSharedFilters(prevData => ({
       ...prevData,
       [val.name]: val.value,
     }));

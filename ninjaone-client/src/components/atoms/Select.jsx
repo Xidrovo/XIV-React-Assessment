@@ -43,7 +43,7 @@ const Select = ({
       onClick={toggleDropdown}
       ref={selectRef}
     >
-      <div className="px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center w-64">
+      <div className="px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center w-80">
         <p className={`${hadSelected ? ' ' : 'text-gray-500'}`}>
           {!placeholder && prefixText} {selectedOption.label}
         </p>

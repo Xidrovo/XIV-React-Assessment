@@ -31,7 +31,7 @@ const DashboardContainer = () => {
 
   const { get } = useApi('/api');
 
-  const [sharedData, setSharedData] = useState({
+  const [sharedFilters, setSharedFilters] = useState({
     filterType: 'All',
     sortingBy: 'None',
   });
@@ -51,7 +51,9 @@ const DashboardContainer = () => {
 
   return (
     <section className="p-6">
-      <SharedDashboardContext.Provider value={{ sharedData, setSharedData, deviceState, dispatch }}>
+      <SharedDashboardContext.Provider
+        value={{ sharedFilters, setSharedFilters, deviceState, dispatch }}
+      >
         <DeviceToolbar />
         <DeviceFilterPanel />
         <DeviceTables devices={deviceState} />
