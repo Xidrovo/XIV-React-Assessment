@@ -8,14 +8,11 @@ const DeviceTables = ({ devices = [] }) => {
   const [tempDevice, setTempDevice] = useState(devices);
 
   useEffect(() => {
-    setTempDevice(devices);
-  }, [devices]);
+    let filteredDevice = [...filterByType(sharedFilters.filterType)];
+    let sortedFilteredDevice = [...sortBy(sharedFilters.sortingBy, filteredDevice)];
 
-  useEffect(() => {
-    let filteredDevice = filterByType(sharedFilters.filterType);
-    let sortedFilteredDevice = sortBy(sharedFilters.sortingBy, filteredDevice);
     setTempDevice(sortedFilteredDevice);
-  }, [sharedFilters.filterType, sharedFilters.sortingBy]);
+  }, [sharedFilters.filterType, sharedFilters.sortingBy, devices]);
 
   const filterByType = type => {
     const upperType = type.toUpperCase();
@@ -42,29 +39,24 @@ const DeviceTables = ({ devices = [] }) => {
     switch (sortingBy.toUpperCase()) {
       case 'HDD-D':
         return filteredDevice.sort((a, b) => {
-          if (parseInt(a.hdd_capacity, 10) > parseInt(b.hdd_capacity, 10)) {
-            return 1;
-          }
-          if (parseInt(a.hdd_capacity, 10) < parseInt(b.hdd_capacity, 10)) {
-            return -1;
-          }
-          return 0;
+          const parsedA = parseInt(a.hdd_capacity, 10);
+          const parsedB = parseInt(b.hdd_capacity, 10);
+          return parsedA > parsedB ? -1 : parsedA < parsedB ? 1 : 0;
         });
       case 'HDD-A':
         return filteredDevice.sort((a, b) => {
-          if (parseInt(a.hdd_capacity, 10) > parseInt(b.hdd_capacity, 10)) {
-            return -1;
-          }
-          if (parseInt(a.hdd_capacity, 10) < parseInt(b.hdd_capacity, 10)) {
-            return 1;
-          }
-          return 0;
+          const parsedA = parseInt(a.hdd_capacity, 10);
+          const parsedB = parseInt(b.hdd_capacity, 10);
+          return parsedA > parsedB ? 1 : parsedA < parsedB ? -1 : 0;
         });
       case 'NAME-AZ':
-        return [];
+        return filteredDevice.sort((a, b) => {
+          return a.system_name > b.system_name ? 1 : a.system_name < b.system_name ? -1 : 0;
+        });
       case 'NAME-ZA':
-        return [];
-
+        return filteredDevice.sort((a, b) => {
+          return a.system_name > b.system_name ? -1 : a.system_name < b.system_name ? 1 : 0;
+        });
       default:
         return filteredDevice;
     }
