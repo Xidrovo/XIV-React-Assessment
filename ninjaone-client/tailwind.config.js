@@ -48,6 +48,11 @@ export default {
         'warning-light': 'var(--warning-color-light)',
         'warning-dark': 'var(--warning-color-dark)',
       },
+      borderColor: {
+        warning: 'var(--warning-color)',
+        'warning-light': 'var(--warning-color-light)',
+        'warning-dark': 'var(--warning-color-dark)',
+      },
     },
   },
   plugins: [],

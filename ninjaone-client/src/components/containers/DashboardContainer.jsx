@@ -18,7 +18,6 @@ const reducer = (state, action) => {
     case 'DEL_DEVICE':
       return [...state]; //TODO
     case 'EDIT_DEVICE':
-      console.log(action.payload);
       return [...state];
     default:
       return state;

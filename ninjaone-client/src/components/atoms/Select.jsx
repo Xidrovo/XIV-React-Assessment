@@ -9,6 +9,7 @@ const Select = ({
   options = [{ value: 'default', label: 'default value' }],
   placeholder = '',
   name = '',
+  error = '',
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,37 +39,39 @@ const Select = ({
   };
 
   return (
-    <div
-      className="relative inline-block cursor-pointer select-none"
-      onClick={toggleDropdown}
-      ref={selectRef}
-    >
+    <div className="flex flex-col ">
       <div
-        className={
-          'px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center ' +
-          props.className
-        }
+        className="relative inline-block cursor-pointer select-none"
+        onClick={toggleDropdown}
+        ref={selectRef}
       >
-        <p className={`${hadSelected ? ' ' : 'text-gray-500'}`}>
-          {!placeholder && prefixText} {selectedOption.label}
-        </p>
-        <ArrowIcon
-          className={` ml-4 transition-transform duration-300 ${isOpen && 'rotate-180'}`}
-        />
-      </div>
-      {isOpen && (
-        <div className="absolute left-0 z-10 w-full border border-gray-300 rounded bg-white">
-          {options.map((option, index) => (
-            <div
-              key={index}
-              className="px-4 py-2 hover:bg-gray-100"
-              onClick={() => handleOptionClick(option)}
-            >
-              {option.label}
-            </div>
-          ))}
+        <div
+          className={`px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center ${
+            props.className
+          } ${error ? ' border-warning' : ''}`}
+        >
+          <p className={`${hadSelected ? ' ' : 'text-gray-500'}`}>
+            {!placeholder && prefixText} {selectedOption.label}
+          </p>
+          <ArrowIcon
+            className={` ml-4 transition-transform duration-300 ${isOpen && 'rotate-180'}`}
+          />
         </div>
-      )}
+        {isOpen && (
+          <div className="absolute left-0 z-10 w-full border border-gray-300 rounded bg-white">
+            {options.map((option, index) => (
+              <div
+                key={index}
+                className="px-4 py-2 hover:bg-gray-100"
+                onClick={() => handleOptionClick(option)}
+              >
+                {option.label}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {error && <span className=" text-xs text-warning pt-1">{error}</span>}
     </div>
   );
 };

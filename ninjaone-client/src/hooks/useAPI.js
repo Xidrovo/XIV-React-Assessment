@@ -38,9 +38,9 @@ const useApi = baseUrl => {
   const get = url => request('GET', url);
   const post = (url, data) => request('POST', url, data);
   const put = (url, data) => request('PUT', url, data);
-  const del = url => request('DELETE', url);
+  const delApi = url => request('DELETE', url);
 
-  return { isLoading, error, get, post, put, delete: del };
+  return { isLoading, error, get, post, put, delApi };
 };
 
 export default useApi;

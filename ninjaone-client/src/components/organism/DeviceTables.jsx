@@ -17,15 +17,18 @@ const DeviceTables = ({ devices = [] }) => {
     let filteredDevice = [...filterByType(sharedFilters.filterType)];
     let sortedFilteredDevice = [...sortBy(sharedFilters.sortingBy, filteredDevice)];
     let searchedSortedFilteredDevice = [...sortedFilteredDevice];
+
     if (sharedFilters.searchQuery.trim() !== '') {
       const fuse = new Fuse(searchedSortedFilteredDevice, options);
       const result = fuse.search(sharedFilters.searchQuery).map(item => item.item);
       searchedSortedFilteredDevice = [...result];
     }
+
     setTempDevice(searchedSortedFilteredDevice);
   }, [sharedFilters.searchQuery, sharedFilters.filterType, sharedFilters.sortingBy, devices]);
 
   const filterByType = type => {
+    console.log(type, '???', devices);
     const upperType = type.toUpperCase();
 
     switch (type.toUpperCase()) {
