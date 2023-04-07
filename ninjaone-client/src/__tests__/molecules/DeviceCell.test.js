@@ -1,6 +1,15 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import DeviceCell from '../../components/molecules/DeviceCell';
+
+import { render } from '../test-utils';
+
+const providerProps = {
+  value: {
+    dispatch: jest.fn(), // Mock dispatch function
+    // Add any other necessary properties for your context
+  },
+};
 
 describe('DeviceCell molecule', () => {
   test('renders without crashing with the defaults values', () => {
@@ -9,7 +18,8 @@ describe('DeviceCell molecule', () => {
         <tbody>
           <DeviceCell />
         </tbody>
-      </table>
+      </table>,
+      { providerProps }
     );
     const workstationText = getByText(/workstation/i);
 
@@ -25,7 +35,8 @@ describe('DeviceCell molecule', () => {
         <tbody>
           <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
         </tbody>
-      </table>
+      </table>,
+      { providerProps }
     );
     const workstationText = screen.getByText('Windows workstation - 128 GB');
 
@@ -41,7 +52,8 @@ describe('DeviceCell molecule', () => {
         <tbody>
           <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
         </tbody>
-      </table>
+      </table>,
+      { providerProps }
     );
     const workstationText = screen.getByText('Mac workstation - 128 GB');
 
@@ -56,7 +68,8 @@ describe('DeviceCell molecule', () => {
         <tbody>
           <DeviceCell systemName={systemName} deviceType={deviceType} capacity={128} />
         </tbody>
-      </table>
+      </table>,
+      { providerProps }
     );
     const workstationText = screen.getByText('Linux workstation - 128 GB');
 
@@ -70,7 +83,8 @@ describe('DeviceCell molecule', () => {
         <tbody>
           <DeviceCell />
         </tbody>
-      </table>
+      </table>,
+      { providerProps }
     );
 
     fireEvent.mouseEnter(getByText(/workstation/i));
@@ -88,7 +102,8 @@ describe('DeviceCell molecule', () => {
         <tbody>
           <DeviceCell />
         </tbody>
-      </table>
+      </table>,
+      { providerProps }
     );
 
     fireEvent.mouseEnter(getByText(/workstation/i));
@@ -107,7 +122,8 @@ describe('DeviceCell molecule', () => {
         <tbody>
           <DeviceCell />
         </tbody>
-      </table>
+      </table>,
+      { providerProps }
     );
 
     fireEvent.mouseEnter(getByText(/workstation/i));
