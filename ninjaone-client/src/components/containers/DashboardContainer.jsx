@@ -32,7 +32,7 @@ const DashboardContainer = () => {
   const { get } = useApi('/api');
 
   const [sharedData, setSharedData] = useState({
-    filterType: 'None',
+    filterType: 'All',
     sortingBy: 'None',
   });
 

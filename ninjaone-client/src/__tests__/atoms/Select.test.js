@@ -23,7 +23,7 @@ describe('Select component', () => {
 
   test('selects an option and calls onChange', () => {
     const handleChange = jest.fn();
-    const { getByText } = render(<Select options={options} onChange={handleChange} />);
+    const { getByText } = render(<Select options={options} onChange={handleChange} name="test" />);
 
     fireEvent.click(getByText('Option 1'));
     fireEvent.click(getByText('Option 2'));
@@ -31,6 +31,6 @@ describe('Select component', () => {
     expect(getByText('Option 2')).toBeInTheDocument();
 
     expect(handleChange).toHaveBeenCalledTimes(1);
-    expect(handleChange).toHaveBeenCalledWith(options[1]);
+    expect(handleChange).toHaveBeenCalledWith({ name: 'test', ...options[1] });
   });
 });
