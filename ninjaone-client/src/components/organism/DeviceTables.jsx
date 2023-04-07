@@ -1,7 +1,7 @@
 import React from 'react';
 import DeviceCell from '@molecules/DeviceCell';
 
-const DeviceTables = () => {
+const DeviceTables = ({ devices = [] }) => {
   return (
     <table className="w-full text-left">
       <thead>
@@ -10,10 +10,16 @@ const DeviceTables = () => {
         </tr>
       </thead>
       <tbody>
-        <DeviceCell systemName="DESKTOP-0VCBIFF" deviceType="Windows" capacity={128} />
-        <DeviceCell systemName="LINUX-SMITH-J" deviceType="Linux" capacity={64} />
-        <DeviceCell systemName="WINXP-125498HQ" deviceType="Windows" capacity={64} />
-        <DeviceCell systemName="MAC-SMITH-JOHN" deviceType="Mac" capacity={64} />
+        {devices.map(device => {
+          return (
+            <DeviceCell
+              systemName={device.system_name}
+              deviceType={device.type}
+              capacity={device.hdd_capacity}
+              key={device.id}
+            />
+          );
+        })}
       </tbody>
     </table>
   );

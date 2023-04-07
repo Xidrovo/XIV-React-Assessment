@@ -8,7 +8,8 @@ const Select = ({
   prefixText = '',
   options = [{ value: 'default', label: 'default value' }],
   placeholder = '',
-  onChange = () => {},
+  name = '',
+  ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
@@ -32,8 +33,8 @@ const Select = ({
       setHadSelected(true);
     }
     setSelectedOption(option);
+    props.onChange({ name, ...option });
     setIsOpen(false);
-    onChange(option);
   };
 
   return (
@@ -42,7 +43,7 @@ const Select = ({
       onClick={toggleDropdown}
       ref={selectRef}
     >
-      <div className="px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center">
+      <div className="px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center w-64">
         <p className={`${hadSelected ? ' ' : 'text-gray-500'}`}>
           {!placeholder && prefixText} {selectedOption.label}
         </p>

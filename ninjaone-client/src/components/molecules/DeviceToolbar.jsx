@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Button from '@atoms/Button';
+
+import SharedDashboardContext from '@context/SharedDashboardContext';
 
 import LabeledInput from '@molecules/LabeledInput';
 import LabeledSelect from '@molecules/LabeledSelect';
@@ -9,14 +11,17 @@ import Modal from './Modal';
 
 const DeviceToolbar = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { sharedData, setSharedData } = useContext(SharedDashboardContext);
 
   const toggleModal = () => {
     setOpenModal(!openModal);
   };
 
   const closeModal = () => {
+    console.log(sharedData);
     setOpenModal(false);
   };
+
   return (
     <article className="w-full flex justify-between pb-6">
       <p className="font-medium text-2xl">Devices</p>

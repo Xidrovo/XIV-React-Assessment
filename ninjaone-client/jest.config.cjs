@@ -11,6 +11,7 @@ module.exports = {
     '^@molecules(.*)$': `${path.resolve(__dirname, 'src/components/molecules')}$1`,
     '^@organisms(.*)$': `${path.resolve(__dirname, 'src/components/organisms')}$1`,
     '^@hooks(.*)$': `${path.resolve(__dirname, 'src/hooks')}$1`,
+    '^@context(.*)$': `${path.resolve(__dirname, 'src/context')}$1`,
   },
   setupFilesAfterEnv: ['./jest.setup.cjs'],
   testEnvironment: 'jest-environment-jsdom',
