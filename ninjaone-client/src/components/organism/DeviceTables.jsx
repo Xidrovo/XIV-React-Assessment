@@ -1,17 +1,28 @@
 import React, { useEffect, useContext, useState } from 'react';
-import DeviceCell from '@molecules/DeviceCell';
+import Fuse from 'fuse.js';
 
+import DeviceCell from '@molecules/DeviceCell';
 import SharedDashboardContext from '@context/SharedDashboardContext';
 
 const DeviceTables = ({ devices = [] }) => {
   const { sharedFilters } = useContext(SharedDashboardContext);
   const [tempDevice, setTempDevice] = useState(devices);
 
+  const options = {
+    keys: ['system_name'],
+    threshold: 0.4,
+  };
+
   useEffect(() => {
     let filteredDevice = [...filterByType(sharedFilters.filterType)];
     let sortedFilteredDevice = [...sortBy(sharedFilters.sortingBy, filteredDevice)];
-    console.log(sharedFilters);
-    setTempDevice(sortedFilteredDevice);
+    let searchedSortedFilteredDevice = [...sortedFilteredDevice];
+    if (sharedFilters.searchQuery.trim() !== '') {
+      const fuse = new Fuse(searchedSortedFilteredDevice, options);
+      const result = fuse.search(sharedFilters.searchQuery).map(item => item.item);
+      searchedSortedFilteredDevice = [...result];
+    }
+    setTempDevice(searchedSortedFilteredDevice);
   }, [sharedFilters.searchQuery, sharedFilters.filterType, sharedFilters.sortingBy, devices]);
 
   const filterByType = type => {
