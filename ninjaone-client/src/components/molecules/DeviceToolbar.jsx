@@ -11,17 +11,34 @@ import Modal from './Modal';
 
 const DeviceToolbar = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { sharedFilters, setSharedFilters } = useContext(SharedDashboardContext);
+  const [newDeviceValue, setNewDeviceValue] = useState({});
+
+  const deviceType = [
+    { value: 'windows', label: 'Windows' },
+    { value: 'mac', label: 'Mac' },
+    { value: 'linux', label: 'Linux' },
+  ];
 
   const toggleModal = () => {
     setOpenModal(!openModal);
   };
 
   const closeModal = () => {
-    console.log(sharedFilters);
     setOpenModal(false);
   };
 
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
+    setNewDeviceValue({ ...newDeviceValue, [name]: value });
+  };
+
+  const handleSelect = ({ value }) => {
+    setNewDeviceValue({ ...newDeviceValue, type: value });
+  };
+
+  const onSubmit = () => {
+    console.log(newDeviceValue);
+  };
   return (
     <article className="w-full flex justify-between pb-6">
       <p className="font-medium text-2xl">Devices</p>
@@ -31,9 +48,15 @@ const DeviceToolbar = () => {
       </Button>
       <Modal isOpen={openModal} closeModal={closeModal} title="Add device">
         <div className="flex flex-col space-y-4">
-          <LabeledInput labelText="System name *" />
-          <LabeledSelect placeholder="Select type" labelText="Device type *" />
-          <LabeledInput labelText="HDD capacity (GB) *" />
+          <LabeledInput labelText="System name *" name="sysName" onChange={handleChange} />
+          <LabeledSelect
+            placeholder="Select type"
+            labelText="Device type *"
+            options={deviceType}
+            full={true}
+            onChange={handleSelect}
+          />
+          <LabeledInput labelText="HDD capacity (GB) *" name="capacity" onChange={handleChange} />
         </div>
         <div className="w-full flex justify-end mt-8 space-x-4">
           <Button
@@ -44,7 +67,9 @@ const DeviceToolbar = () => {
           >
             Cancel
           </Button>
-          <Button buttonKind="primary">Submit</Button>
+          <Button buttonKind="primary" onClick={onSubmit}>
+            Submit
+          </Button>
         </div>
       </Modal>
     </article>

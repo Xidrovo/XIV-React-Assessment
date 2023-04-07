@@ -43,7 +43,6 @@ const DeviceFilterPanel = () => {
   const handleInput = ({ target }) => {
     const { value } = target;
 
-    // Cancel the previous timer if it exists
     if (timerId) {
       clearTimeout(timerId);
     }
