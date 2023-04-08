@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import SharedDashboardContext from '@context/SharedDashboardContext';
+import useApi from '@hooks/useAPI';
 
 import Select from '@atoms/Select';
 import SearchInput from '@molecules/SearchInput';
@@ -8,8 +9,10 @@ import SearchInput from '@molecules/SearchInput';
 import RefreshIcon from '@icons/RefreshIcon';
 
 const DeviceFilterPanel = () => {
-  const { setSharedFilters } = useContext(SharedDashboardContext);
+  const { setSharedFilters, dispatch } = useContext(SharedDashboardContext);
   const [timerId, setTimerId] = useState(null);
+
+  const { get } = useApi('/api');
 
   useEffect(() => {
     return () => {
@@ -56,6 +59,11 @@ const DeviceFilterPanel = () => {
     setTimerId(newTimerId);
   };
 
+  const onRefresh = async () => {
+    const devices = await get('/devices');
+    dispatch({ type: 'PULL_DEVICES', payload: devices });
+  };
+
   return (
     <article className="flex justify-between items-center">
       <article className="flex justify-start space-x-2">
@@ -65,10 +73,19 @@ const DeviceFilterPanel = () => {
           options={deviceType}
           name="filterType"
           onChange={handleSelect}
+          className="w-80 sm:full"
         />
-        <Select prefixText="Sort by: " options={options} name="sortingBy" onChange={handleSelect} />
+        <Select
+          prefixText="Sort by: "
+          options={options}
+          name="sortingBy"
+          onChange={handleSelect}
+          className="w-80 sm:full"
+        />
       </article>
-      <RefreshIcon />
+      <article className="p-2 cursor-pointer hover:bg-gray-100 rounded" onClick={onRefresh}>
+        <RefreshIcon />
+      </article>
     </article>
   );
 };

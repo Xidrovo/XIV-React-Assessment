@@ -18,7 +18,7 @@ const DeviceToolbar = () => {
   const [newDeviceValue, setNewDeviceValue] = useState({});
   const [errors, setErrors] = useState({});
 
-  const { post, delApi } = useApi('/api');
+  const { post } = useApi('/api');
 
   const deviceType = [
     { value: 'windows', label: 'Windows' },

@@ -10,11 +10,16 @@ const Select = ({
   placeholder = '',
   name = '',
   error = '',
+  defaultValue = null,
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
-    placeholder ? { label: placeholder, value: placeholder } : options[0]
+    placeholder
+      ? { label: placeholder, value: placeholder }
+      : defaultValue
+      ? defaultValue
+      : options[0]
   );
   const [hadSelected, setHadSelected] = useState(!placeholder);
   const selectRef = useRef();
@@ -46,7 +51,7 @@ const Select = ({
         ref={selectRef}
       >
         <div
-          className={`px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center ${
+          className={`px-4 py-2 border border-gray-300 rounded bg-white flex justify-between items-center  ${
             props.className
           } ${error ? ' border-warning' : ''}`}
         >

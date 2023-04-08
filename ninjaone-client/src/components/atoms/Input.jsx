@@ -12,6 +12,7 @@ const Input = props => {
         placeholder={props.placeholder}
         name={props.name}
         type={props.type || 'text'}
+        defaultValue={props.defaultValue || ''}
       ></input>
       {props.error && <span className=" text-xs text-warning pt-1">{props.error}</span>}
     </div>

@@ -6,8 +6,7 @@ import { render } from '../test-utils';
 
 const providerProps = {
   value: {
-    dispatch: jest.fn(), // Mock dispatch function
-    // Add any other necessary properties for your context
+    dispatch: jest.fn(),
   },
 };
 

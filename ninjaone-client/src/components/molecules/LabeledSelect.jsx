@@ -8,6 +8,7 @@ const LabeledSelect = ({
   onChange,
   options = [],
   error = '',
+  defaultValue = {},
 }) => {
   return (
     <div className="flex flex-col">
@@ -18,6 +19,7 @@ const LabeledSelect = ({
         placeholder={placeholder}
         onChange={onChange}
         error={error}
+        defaultValue={defaultValue}
       ></Select>
     </div>
   );

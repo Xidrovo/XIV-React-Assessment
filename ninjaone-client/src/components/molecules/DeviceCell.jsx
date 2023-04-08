@@ -9,12 +9,8 @@ import WindowsIcon from '@icons/WindowsIcon';
 import MacIcon from '@icons/MacIcon';
 import LinuxIcon from '@icons/LinuxIcon';
 
-import Button from '@atoms/Button';
-
 import DeleteModal from './DeleteModal';
-import LabeledInput from './LabeledInput';
-import LabeledSelect from './LabeledSelect';
-import Modal from './Modal';
+import EditModal from './EditModal';
 
 const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0, id }) => {
   const { dispatch } = useContext(SharedDashboardContext);
@@ -26,6 +22,12 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0, id }) => {
   const { delApi } = useApi('/api');
 
   const menuRef = useRef();
+
+  const deviceTypeOptions = [
+    { value: 'windows', label: 'Windows' },
+    { value: 'mac', label: 'Mac' },
+    { value: 'linux', label: 'Linux' },
+  ];
 
   const toggleDelModal = () => {
     setOpenMenu(false);
@@ -127,24 +129,16 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0, id }) => {
         onDelete={deleteCell}
         systemName={systemName}
       />
-      <Modal isOpen={openEditModal} closeModal={closeModal} title="Edit device">
-        <div className="flex flex-col space-y-4">
-          <LabeledInput labelText="System name *" />
-          <LabeledSelect placeholder="Select type" labelText="Device type *" />
-          <LabeledInput labelText="HDD capacity (GB) *" />
-        </div>
-        <div className="w-full flex justify-end mt-8 space-x-4">
-          <Button
-            buttonKind="secondary"
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            Cancel
-          </Button>
-          <Button buttonKind="primary">Submit</Button>
-        </div>
-      </Modal>
+      <EditModal
+        isOpen={openEditModal}
+        closeModal={closeModal}
+        title="Edit device"
+        systemName={systemName}
+        deviceType={deviceTypeOptions.find(a => a.value.toUpperCase() === deviceType.toUpperCase())}
+        capacity={capacity}
+        id={id}
+        options={deviceTypeOptions}
+      />
     </React.Fragment>
   );
 };

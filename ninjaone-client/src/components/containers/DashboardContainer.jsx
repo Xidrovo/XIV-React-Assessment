@@ -18,7 +18,7 @@ const reducer = (state, action) => {
     case 'DEL_DEVICE':
       return state.filter(item => item.id !== action.payload);
     case 'EDIT_DEVICE':
-      return [...state];
+      return state.map(item => (item.id === action.payload.id ? action.payload : item));
     default:
       return state;
   }
@@ -28,7 +28,7 @@ const DashboardContainer = () => {
   const [deviceState, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
 
-  const { get } = useApi('/api');
+  const { get, delApi } = useApi('/api');
 
   const [sharedFilters, setSharedFilters] = useState({
     searchQuery: '',
