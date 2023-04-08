@@ -4,8 +4,8 @@ import useApi from '@hooks/useAPI';
 import SharedDashboardContext from '@context/SharedDashboardContext';
 
 import DeviceToolbar from '@molecules/DeviceToolbar';
-import DeviceFilterPanel from '../organism/DeviceFilterPanel';
-import DeviceTables from '../organism/DeviceTables';
+import DeviceFilterPanel from '../organisms/DeviceFilterPanel';
+import DeviceTables from '../organisms/DeviceTables';
 
 const initialState = [];
 

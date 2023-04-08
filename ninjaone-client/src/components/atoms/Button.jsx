@@ -21,6 +21,8 @@ const Button = props => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={`${selectButtonKind()} ${props.className}`}
+      name={props.name || ''}
+      data-testid={props.name || ''}
     >
       {props.children || 'Button component'}
     </button>

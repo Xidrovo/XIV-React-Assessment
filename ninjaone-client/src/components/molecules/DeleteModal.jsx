@@ -14,7 +14,7 @@ const DeleteModal = ({ isOpen, closeModal, systemName, onDelete }) => {
         <Button buttonKind="secondary" onClick={closeModal}>
           Cancel
         </Button>
-        <Button buttonKind="warning" onClick={onDelete}>
+        <Button buttonKind="warning" onClick={onDelete} name="delete-button">
           Delete
         </Button>
       </div>

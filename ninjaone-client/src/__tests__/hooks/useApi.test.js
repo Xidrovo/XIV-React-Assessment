@@ -1,5 +1,5 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
-import useApi from '../../hooks/useAPI';
+import useApi from '@hooks/useAPI';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({

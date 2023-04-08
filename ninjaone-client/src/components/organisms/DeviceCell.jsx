@@ -9,8 +9,8 @@ import WindowsIcon from '@icons/WindowsIcon';
 import MacIcon from '@icons/MacIcon';
 import LinuxIcon from '@icons/LinuxIcon';
 
-import DeleteModal from './DeleteModal';
-import EditModal from './EditModal';
+import DeleteModal from '@molecules/DeleteModal';
+import EditModal from '@molecules/EditModal';
 
 const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0, id }) => {
   const { dispatch } = useContext(SharedDashboardContext);

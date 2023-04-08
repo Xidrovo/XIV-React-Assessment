@@ -18,7 +18,11 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
-  testPathIgnorePatterns: ['/node_modules/', 'src/__tests__/test-utils.js'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    'src/__tests__/test-utils.js',
+    'src/__tests__/__mocks__/*',
+  ],
   collectCoverageFrom: [
     'src/**/*.{js,jsx}', // Collect coverage from all .js and .jsx files in the src folder
     '!src/components/atoms/icons/**/*', // Exclude the Icon folder from coverage collection

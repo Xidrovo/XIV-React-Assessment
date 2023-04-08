@@ -10,7 +10,7 @@ export default defineConfig({
       '@icons': path.resolve(__dirname, 'src/components/atoms/icons'),
       '@atoms': path.resolve(__dirname, 'src/components/atoms'),
       '@molecules': path.resolve(__dirname, 'src/components/molecules'),
-      '@organisms': path.resolve(__dirname, 'src/components/organism'),
+      '@organisms': path.resolve(__dirname, 'src/components/organisms'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@context': path.resolve(__dirname, 'src/context'),
     },

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import Fuse from 'fuse.js';
 
-import DeviceCell from '@molecules/DeviceCell';
+import DeviceCell from '@organisms/DeviceCell';
 import SharedDashboardContext from '@context/SharedDashboardContext';
 
 const DeviceTables = ({ devices = [] }) => {
