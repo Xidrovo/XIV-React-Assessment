@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { screen, fireEvent, renderHook, act, waitFor } from '@testing-library/react';
-import useApi from '@hooks/useAPI';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
