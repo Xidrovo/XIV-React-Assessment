@@ -9,7 +9,7 @@ import DeviceTables from '../organisms/DeviceTables';
 
 const initialState = [];
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case 'PULL_DEVICES':
       return [...action.payload];

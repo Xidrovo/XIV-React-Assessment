@@ -88,7 +88,7 @@ const DeviceToolbar = () => {
     });
   };
   return (
-    <article className="w-full flex justify-between pb-6 ">
+    <article className="w-full flex justify-between pb-6 " data-testid="device-toolbar">
       <p className="font-medium text-2xl">Devices</p>
       <Button className="flex items-center justify-between" onClick={() => toggleModal()}>
         <PlusIcon className="font-normal" />

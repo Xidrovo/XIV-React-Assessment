@@ -65,7 +65,7 @@ const DeviceFilterPanel = () => {
   };
 
   return (
-    <article className="flex justify-between items-center">
+    <article className="flex justify-between items-center" data-testid="device-filter-panel">
       <article className="flex justify-start space-x-2">
         <SearchInput placeholder="search" onChange={handleInput} />
         <Select

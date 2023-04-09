@@ -75,7 +75,7 @@ const DeviceTables = ({ devices = [] }) => {
     }
   };
   return (
-    <table className="w-full text-left">
+    <table className="w-full text-left" data-testid="device-tables">
       <thead>
         <tr>
           <th className="py-4 pl-3 font-medium text-sm">Device</th>
