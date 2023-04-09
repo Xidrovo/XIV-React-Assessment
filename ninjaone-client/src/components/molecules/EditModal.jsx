@@ -55,6 +55,7 @@ const EditModal = ({
   const handleSelect = ({ value }) => {
     setNewDeviceValue({ ...newDeviceValue, type: value.toUpperCase() });
   };
+
   const handleChange = ({ target }) => {
     const { value, name } = target;
     setNewDeviceValue({ ...newDeviceValue, [name]: value });
