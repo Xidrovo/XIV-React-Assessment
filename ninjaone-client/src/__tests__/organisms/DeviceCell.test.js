@@ -1,9 +1,8 @@
 import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
+import { render } from '../test-utils';
 
 import DeviceCell from '@organisms/DeviceCell';
-
-import { render } from '../test-utils';
 
 const providerProps = {
   value: {
@@ -24,16 +23,15 @@ const cellRender = props => {
 
 let appRoot;
 
-beforeEach(() => {
-  appRoot = document.createElement('div');
-  appRoot.setAttribute('id', 'App-root');
-  document.body.appendChild(appRoot);
-});
-afterEach(() => {
-  document.body.removeChild(appRoot);
-});
-
 describe('DeviceCell molecule', () => {
+  beforeEach(() => {
+    appRoot = document.createElement('div');
+    appRoot.setAttribute('id', 'App-root');
+    document.body.appendChild(appRoot);
+  });
+  afterEach(() => {
+    document.body.removeChild(appRoot);
+  });
   test('renders without crashing with the defaults values', () => {
     const { getByTestId, getByText } = cellRender();
     const workstationText = getByText(/workstation/i);

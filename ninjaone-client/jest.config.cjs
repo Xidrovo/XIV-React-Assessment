@@ -17,6 +17,7 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
+    '^.+\\.svg$': 'jest-transform-stub',
   },
   testPathIgnorePatterns: [
     '/node_modules/',
@@ -29,5 +30,7 @@ module.exports = {
     'src/**/*.{js,jsx}', // Collect coverage from all .js and .jsx files in the src folder
     '!src/components/atoms/icons/**/*', // Exclude the Icon folder from coverage collection
     '!src/__tests__/test-utils.js',
+    '!src/main.jsx',
+    '!src/App.jsx',
   ],
 };
