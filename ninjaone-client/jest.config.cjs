@@ -22,6 +22,8 @@ module.exports = {
     '/node_modules/',
     'src/__tests__/test-utils.js',
     'src/__tests__/__mocks__/*',
+    'src/main.jsx',
+    'src/app.jsx',
   ],
   collectCoverageFrom: [
     'src/**/*.{js,jsx}', // Collect coverage from all .js and .jsx files in the src folder
