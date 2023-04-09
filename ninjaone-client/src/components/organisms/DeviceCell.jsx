@@ -83,7 +83,11 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0, id }) => {
   };
   return (
     <React.Fragment>
-      <tr className="hover:bg-table-hover group " onMouseLeave={handleMouseLeave}>
+      <tr
+        className="hover:bg-table-hover group "
+        onMouseLeave={handleMouseLeave}
+        data-testid="cell-item"
+      >
         <td className="py-2 pl-3 flex justify-between items-center">
           <div>
             <div className="flex justify-start items-center">

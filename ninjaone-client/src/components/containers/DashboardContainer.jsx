@@ -28,7 +28,7 @@ const DashboardContainer = () => {
   const [deviceState, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
 
-  const { get, delApi } = useApi('/api');
+  const { get } = useApi('/api');
 
   const [sharedFilters, setSharedFilters] = useState({
     searchQuery: '',
