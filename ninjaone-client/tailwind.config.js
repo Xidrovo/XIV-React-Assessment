@@ -9,6 +9,9 @@ export default {
         xs: '4.5rem',
         md: '30rem',
       },
+      maxHeight: {
+        xl: '28rem',
+      },
       backgroundColor: {
         primary: 'var(--primary-color)',
         'primary-light': 'var(--primary-color-light)',

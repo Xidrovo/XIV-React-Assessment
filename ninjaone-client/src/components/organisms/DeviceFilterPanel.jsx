@@ -65,15 +65,18 @@ const DeviceFilterPanel = () => {
   };
 
   return (
-    <article className="flex justify-between items-center" data-testid="device-filter-panel">
-      <article className="flex justify-start space-x-2">
+    <article
+      className="flex flex-col-reverse md:flex-row md:justify-between items-center"
+      data-testid="device-filter-panel"
+    >
+      <article className="flex flex-col md:flex-row justify-start space-y-2 md:space-x-2 md:space-y-0">
         <SearchInput placeholder="search" onChange={handleInput} />
         <Select
           prefixText="Device Type: "
           options={deviceType}
           name="filterType"
           onChange={handleSelect}
-          className="w-80 sm:full"
+          className="w-full md:w-80 "
         />
         <Select
           prefixText="Sort by: "

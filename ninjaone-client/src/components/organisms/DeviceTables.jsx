@@ -64,37 +64,47 @@ const DeviceTables = ({ devices = [] }) => {
         });
       case 'NAME-AZ':
         return filteredDevice.sort((a, b) => {
-          return a.system_name > b.system_name ? 1 : a.system_name < b.system_name ? -1 : 0;
+          return a.system_name.toUpperCase() > b.system_name.toUpperCase()
+            ? 1
+            : a.system_name.toUpperCase() < b.system_name.toUpperCase()
+            ? -1
+            : 0;
         });
       case 'NAME-ZA':
         return filteredDevice.sort((a, b) => {
-          return a.system_name > b.system_name ? -1 : a.system_name < b.system_name ? 1 : 0;
+          return a.system_name.toUpperCase() > b.system_name.toUpperCase()
+            ? -1
+            : a.system_name.toUpperCase() < b.system_name.toUpperCase()
+            ? 1
+            : 0;
         });
       default:
         return filteredDevice;
     }
   };
   return (
-    <table className="w-full text-left" data-testid="device-tables">
-      <thead>
-        <tr>
-          <th className="py-4 pl-3 font-medium text-sm">Device</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tempDevice.map(device => {
-          return (
-            <DeviceCell
-              systemName={device.system_name}
-              deviceType={device.type}
-              capacity={device.hdd_capacity}
-              key={device.id}
-              id={device.id}
-            />
-          );
-        })}
-      </tbody>
-    </table>
+    <div className="max-h-72 md:max-h-xl overflow-y-auto">
+      <table className="w-full text-left" data-testid="device-tables">
+        <thead>
+          <tr className="sticky top-0 bg-white">
+            <th className="pb-2 pt-6 pl-3 font-medium text-sm">Device</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tempDevice.map(device => {
+            return (
+              <DeviceCell
+                systemName={device.system_name}
+                deviceType={device.type}
+                capacity={device.hdd_capacity}
+                key={device.id}
+                id={device.id}
+              />
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
