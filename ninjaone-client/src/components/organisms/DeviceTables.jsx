@@ -83,28 +83,39 @@ const DeviceTables = ({ devices = [] }) => {
     }
   };
   return (
-    <div className="max-h-72 md:max-h-xl overflow-y-auto">
-      <table className="w-full text-left" data-testid="device-tables">
-        <thead>
-          <tr className="sticky top-0 bg-white">
-            <th className="pb-2 pt-6 pl-3 font-medium text-sm">Device</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tempDevice.map(device => {
-            return (
-              <DeviceCell
-                systemName={device.system_name}
-                deviceType={device.type}
-                capacity={device.hdd_capacity}
-                key={device.id}
-                id={device.id}
-              />
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <React.Fragment>
+      {devices.length === 0 ? (
+        <div className="text-4xl font-semibold text-gray-800 w-full flex justify-center items-center h-72">
+          <div className="flex flex-col items-center">
+            <p className="text-center"> Yikes! It's empty in here </p>
+            <p className="text-center">no devices found! 🙈</p>
+          </div>
+        </div>
+      ) : (
+        <div className="max-h-72 md:max-h-xl overflow-y-auto">
+          <table className="w-full text-left" data-testid="device-tables">
+            <thead>
+              <tr className="sticky top-0 bg-white">
+                <th className="pb-2 pt-6 pl-3 font-medium text-sm">Device</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tempDevice.map(device => {
+                return (
+                  <DeviceCell
+                    systemName={device.system_name}
+                    deviceType={device.type}
+                    capacity={device.hdd_capacity}
+                    key={device.id}
+                    id={device.id}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 

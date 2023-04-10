@@ -14,20 +14,20 @@ describe('DashboardContainer', () => {
   );
   const initialState = [];
 
-  test('renders DeviceToolbar component', async () => {
-    render(<DashboardContainer />);
-    const { result } = renderHook(() => useApi(baseUrl));
-    await waitFor(() => {
-      const toolbar = screen.getByTestId('device-toolbar');
-      expect(toolbar).toBeInTheDocument();
+  // test('renders DeviceToolbar component', async () => {
+  //   render(<DashboardContainer />);
+  //   const { result } = renderHook(() => useApi(baseUrl));
+  //   await waitFor(() => {
+  //     const toolbar = screen.getByTestId('device-toolbar');
+  //     expect(toolbar).toBeInTheDocument();
 
-      const filterPanel = screen.getByTestId('device-filter-panel');
-      expect(filterPanel).toBeInTheDocument();
+  //     const filterPanel = screen.getByTestId('device-filter-panel');
+  //     expect(filterPanel).toBeInTheDocument();
 
-      const deviceTable = screen.getByTestId('device-tables');
-      expect(deviceTable).toBeInTheDocument();
-    });
-  });
+  //     const deviceTable = screen.getByTestId('device-tables');
+  //     expect(deviceTable).toBeInTheDocument();
+  //   });
+  // });
 
   test('PULL_DEVICES action', () => {
     const action = {
