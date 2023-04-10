@@ -4,6 +4,8 @@ import SharedDashboardContext from '@context/SharedDashboardContext';
 import useApi from '@hooks/useAPI';
 
 import Select from '@atoms/Select';
+import MultiSelect from '@atoms/MultiSelect';
+
 import SearchInput from '@molecules/SearchInput';
 
 import RefreshIcon from '@icons/RefreshIcon';
@@ -71,12 +73,14 @@ const DeviceFilterPanel = () => {
     >
       <article className="flex flex-col md:flex-row justify-start space-y-2 md:space-x-2 md:space-y-0">
         <SearchInput placeholder="search" onChange={handleInput} />
-        <Select
+        <MultiSelect
           prefixText="Device Type: "
           options={deviceType}
           name="filterType"
           onChange={handleSelect}
           className="w-full md:w-80 "
+          defaultValue={deviceType[0]}
+          unSelectedValue={deviceType[0].value}
         />
         <Select
           prefixText="Sort by: "

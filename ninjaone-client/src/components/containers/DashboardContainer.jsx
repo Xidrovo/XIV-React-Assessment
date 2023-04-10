@@ -32,7 +32,7 @@ const DashboardContainer = () => {
 
   const [sharedFilters, setSharedFilters] = useState({
     searchQuery: '',
-    filterType: 'All',
+    filterType: ['All'],
     sortingBy: 'HDD-D',
   });
 

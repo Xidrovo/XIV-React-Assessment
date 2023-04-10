@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
-import { screen, fireEvent } from '@testing-library/react';
 import DeviceTables from '@organisms/DeviceTables';
 
 import { render } from '../test-utils';
 
 let defaultFilters = {
   searchQuery: '',
-  filterType: 'All',
+  filterType: ['All'],
   sortingBy: 'HDD-D',
 };
 const defaultDevices = [
@@ -15,9 +14,9 @@ const defaultDevices = [
   { id: 'Q1JdBnE12', system_name: 'ARMANDO', type: 'LINUX', hdd_capacity: '256' },
 ];
 const testCases = [
-  { type: 'Windows', expected: 'windows-icon-id' },
-  { type: 'Mac', expected: 'mac-icon-id' },
-  { type: 'Linux', expected: 'linux-icon-id' },
+  { type: ['Windows'], expected: 'windows-icon-id' },
+  { type: ['Mac'], expected: 'mac-icon-id' },
+  { type: ['Linux'], expected: 'linux-icon-id' },
 ];
 
 let providerProps = {
@@ -29,7 +28,7 @@ let providerProps = {
 const cleanDefault = () => {
   defaultFilters = {
     searchQuery: '',
-    filterType: 'All',
+    filterType: ['All'],
     sortingBy: 'HDD-D',
   };
 };

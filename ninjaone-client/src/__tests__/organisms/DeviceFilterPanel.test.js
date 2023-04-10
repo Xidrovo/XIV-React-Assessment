@@ -6,6 +6,7 @@ import { render } from '../test-utils';
 const providerProps = {
   value: {
     dispatch: jest.fn(),
+    setSharedFilters: jest.fn(),
   },
 };
 const cellRender = props => {
@@ -42,5 +43,3 @@ describe('Header component', () => {
     expect(getByText('Name (Z-A)')).toBeInTheDocument();
   });
 });
-
-// data-testid="search-icon-id"

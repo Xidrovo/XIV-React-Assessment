@@ -28,24 +28,13 @@ const DeviceTables = ({ devices = [] }) => {
   }, [sharedFilters.searchQuery, sharedFilters.filterType, sharedFilters.sortingBy, devices]);
 
   const filterByType = type => {
-    const upperType = type.toUpperCase();
-
-    switch (type.toUpperCase()) {
-      case 'WINDOWS':
-        return devices.filter(device => {
-          return device.type.toUpperCase() === upperType;
-        });
-      case 'MAC':
-        return devices.filter(device => {
-          return device.type.toUpperCase() === upperType;
-        });
-      case 'LINUX':
-        return devices.filter(device => {
-          return device.type.toUpperCase() === upperType;
-        });
-      default:
-        return devices;
+    const filteredData = devices.filter(item =>
+      type.some(filterType => item.type.toLowerCase() === filterType.toLowerCase())
+    );
+    if (filteredData.length > 0) {
+      return filteredData;
     }
+    return devices;
   };
 
   const sortBy = (sortingBy, filteredDevice) => {
