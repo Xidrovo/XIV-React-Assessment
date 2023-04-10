@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import useOnClickOutside from '@hooks/useOnClickOutside';
@@ -11,6 +11,20 @@ const Modal = ({ children, isOpen, closeModal, title = 'title modal' }) => {
   useOnClickOutside(modalRef, () => {
     closeModal();
   });
+
+  const handleEscapeKeyPress = event => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEscapeKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscapeKeyPress);
+    };
+  }, []);
 
   return (
     isOpen &&

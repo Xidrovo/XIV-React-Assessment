@@ -84,7 +84,7 @@ const DeviceCell = ({ systemName = '', deviceType = '', capacity = 0, id }) => {
   return (
     <React.Fragment>
       <tr
-        className="hover:bg-table-hover group "
+        className="hover:bg-table-hover group border-y-2 border-gray-200 "
         onMouseLeave={handleMouseLeave}
         data-testid="cell-item"
       >
